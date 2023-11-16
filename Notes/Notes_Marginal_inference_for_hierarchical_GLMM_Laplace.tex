@@ -1,0 +1,199 @@
+%% LyX 2.3.7 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{babel}
+\begin{document}
+They have latent variables $\bm{w}$ and
+
+\[
+\bm{w}=\bm{X}\bm{\beta}+\sum_{k=1}^{q}\bm{Z}_{k}\bm{r}_{k}+\bm{\epsilon}
+\]
+
+Assuming something about the errors this means
+
+\[
+\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\sim N\left(\bm{X}\bm{\beta},\bm{\Sigma}_{\theta}\right)
+\]
+
+or equivalently
+
+\[
+f\left(\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right)=\left(2\pi\right)^{-n/2}\left|\bm{\Sigma}_{\theta}\right|^{-1/2}\exp\left\{ -\frac{1}{2}\left(\bm{w}-\bm{X}\bm{\beta}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\bm{w}-\bm{X}\bm{\beta}\right)\right\} 
+\]
+
+where
+
+\[
+\bm{\Sigma}_{\theta}=\sum_{k=1}^{q}\bm{Z}_{k}\bm{V}_{k}\bm{Z}_{k}^{T}+\sigma_{0}^{2}\bm{I}
+\]
+
+The joint density 
+
+\[
+\left[\bm{y},\bm{w}|\bm{\phi},\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]=\left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\left[\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]
+\]
+
+where $\left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]$
+is the data model and $\left[\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]$
+is the process model. We have
+
+\begin{align*}
+\left[\bm{y}|\bm{\phi},\bm{\theta}\right] & =\int_{\bm{w}}\int_{\bm{\beta}}\left[\bm{y},\bm{w}|\bm{\phi},\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]d\bm{\beta}d\bm{w}\\
+ & =\int_{\bm{w}}\left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\left\{ \int_{\bm{\beta}}\left[\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]d\bm{\beta}\right\} d\bm{w}
+\end{align*}
+
+We have
+
+\begin{align*}
+\int_{\bm{\beta}}\left[\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]d\bm{\beta} & =\int_{\bm{\beta}}\left(2\pi\right)^{-n/2}\left|\bm{\Sigma}_{\theta}\right|^{-1/2}\exp\left\{ -\frac{1}{2}\underbrace{\left(\bm{w}-\bm{X}\bm{\beta}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\bm{w}-\bm{X}\bm{\beta}\right)}_{A_{1}}\right\} d\bm{\beta}
+\end{align*}
+
+where
+
+\begin{align*}
+A_{1} & =\left(\bm{w}-\bm{X}\bm{\beta}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\bm{w}-\bm{X}\bm{\beta}\right)\\
+ & =\bm{w}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}+\bm{\beta}^{T}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\bm{\beta}-2\bm{\beta}^{T}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\\
+ & =\left(\bm{\beta}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)^{T}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\left(\bm{\beta}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)\\
+ & -\bm{w}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}+\bm{w}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}
+\end{align*}
+
+Then
+
+\begin{align*}
+\left[\bm{w}|\bm{X},\bm{\Sigma}_{\theta}\right] & =\int_{\bm{\beta}}\left[\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]d\bm{\beta}\\
+ & =\left(2\pi\right)^{-n/2}\left|\bm{\Sigma}_{\theta}\right|^{-1/2}\\
+ & \int_{\bm{\beta}}\exp\left\{ -\frac{1}{2}\left(\bm{\beta}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)^{T}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\left(\bm{\beta}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)\right\} d\bm{\beta}\\
+ & \times\exp\left\{ -\frac{1}{2}\bm{w}^{T}\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]\bm{w}\right\} \\
+ & =\left(2\pi\right)^{-\left(n-p\right)/2}\left|\bm{\Sigma}_{\theta}\right|^{-1/2}\left|\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right|^{-1/2}\\
+ & \underbrace{\int_{\bm{\beta}}\left(2\pi\right)^{-p/2}\left|\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right|^{1/2}\exp\left\{ -\frac{1}{2}\left(\bm{\beta}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)^{T}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]\left(\bm{\beta}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)\right\} d\bm{\beta}}_{=1}\\
+ & \times\exp\left\{ -\frac{1}{2}\bm{w}^{T}\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]\bm{w}\right\} \\
+ & =\left(2\pi\right)^{-\left(n-p\right)/2}\left|\bm{\Sigma}_{\theta}\right|^{-1/2}\left|\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right|^{-1/2}\\
+ & \times\exp\left\{ -\frac{1}{2}\bm{w}^{T}\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]\bm{w}\right\} 
+\end{align*}
+
+Then the marginal
+
+\begin{align*}
+\left[\bm{y}|\bm{\phi},\bm{\theta}\right] & =\int_{\bm{w}}\left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\left[\bm{w}|\bm{X},\bm{\Sigma}_{\theta}\right]d\bm{w}\\
+ & \int_{\bm{w}}\left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\left\{ \int_{\bm{\beta}}\left[\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]d\bm{\beta}\right\} d\bm{w}\\
+ & =\left(2\pi\right)^{-\left(n-p\right)/2}\left|\bm{\Sigma}_{\theta}\right|^{-1/2}\left|\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right|^{-1/2}\\
+ & \int_{\bm{w}}\left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\exp\left\{ -\frac{1}{2}\bm{w}^{T}\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]\bm{w}\right\} d\bm{w}
+\end{align*}
+
+\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#Try what they say, i.e., replaying
+$\bm{\beta}$ in $\left[\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]$
+by the maximum likelihood estimator $\hat{\bm{\beta}}=\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}$.
+Then
+
+\begin{align*}
+\left[\bm{w}|\bm{X},\bm{\Sigma}_{\theta}\right] & =\frac{1}{C_{n}}\exp\left\{ \left(\bm{w}-\bm{X}\hat{\bm{\beta}}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\bm{w}-\bm{X}\hat{\bm{\beta}}\right)\right\} \\
+ & =\frac{1}{C_{n}}\exp\left\{ \underbrace{\left(\bm{w}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\bm{w}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)}_{B_{1}}\right\} 
+\end{align*}
+
+where
+
+\begin{align*}
+B_{1} & =\left(\bm{I}\bm{w}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\bm{I}\bm{w}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)\\
+ & =\left(\left\{ \bm{I}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\right\} \bm{w}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\left\{ \bm{I}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\right\} \bm{w}\right)\\
+ & =\bm{w}^{T}\left\{ \bm{I}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\right\} \bm{\Sigma}_{\theta}^{-1}\left\{ \bm{I}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\right\} \bm{w}\\
+ & =\bm{w}^{T}\left\{ \bm{\Sigma}_{\theta}^{-1}+\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{\Sigma}_{\theta}^{-1}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}-2\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\right\} \bm{w}
+\end{align*}
+
+\begin{align*}
+B_{1} & =\left(\bm{I}\bm{w}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\bm{I}\bm{w}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)\\
+ & =\bm{w}^{T}\left\{ \bm{I}-\left(\bm{\Sigma}_{\theta}^{-1}\bm{X}\right)\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\right\} \bm{\Sigma}_{\theta}^{-1}\left\{ \bm{I}-\left(\bm{\Sigma}_{\theta}^{-1}\bm{X}\right)\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\right\} \bm{w}\\
+ & =\bm{w}^{T}\left\{ \bm{\Sigma}_{\theta}^{-1}+\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{\Sigma}_{\theta}^{-1}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}-2\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{\Sigma}_{\theta}^{-1}\right\} \bm{w}\\
+ & =\bm{w}^{T}\left\{ \bm{\Sigma}_{\theta}^{-1}+\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\left(\bm{\Sigma}_{\theta}^{-1}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}-2\bm{\Sigma}_{\theta}^{-1}\right)\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right\} \bm{w}
+\end{align*}
+
+Same as Lukas.
+
+\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
+
+Let 
+
+\begin{align*}
+\ell\left(\bm{w},\cdot\right) & =\log\left\{ \left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\left[\bm{w}|\bm{X},\bm{\Sigma}_{\theta}\right]\right\} \\
+ & =\log\left\{ \left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\right\} -\frac{1}{2}\bm{w}^{T}\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]\bm{w}
+\end{align*}
+
+And (again)
+
+\[
+\left[\bm{y}|\bm{\phi},\bm{\theta}\right]=\int_{\bm{w}}\exp\left\{ \ell\left(\bm{w},\cdot\right)\right\} d\bm{w}
+\]
+
+Using $\hat{\bm{w}}=\underset{\bm{w}}{\arg\max}\ell\left(\bm{w},\cdot\right)$
+and approximate
+
+\begin{align*}
+\ell\left(\bm{w},\cdot\right) & \approx\ell\left(\hat{\bm{w}}\right)+\frac{1}{2}\left(\bm{w}-\hat{\bm{w}}\right)^{T}\underbrace{\left.\frac{\partial^{2}\ell\left(\bm{w},\cdot\right)}{\partial\bm{w}\partial\bm{w}^{T}}\right|_{\bm{w}=\hat{\bm{w}}}}_{\bm{H}}\left(\bm{w}-\hat{\bm{w}}\right)\\
+ & =\ell\left(\hat{\bm{w}}\right)-\frac{1}{2}\left(\bm{w}-\hat{\bm{w}}\right)^{T}\left[-\bm{H}\right]\left(\bm{w}-\hat{\bm{w}}\right)
+\end{align*}
+
+Then
+
+\begin{align*}
+\left[\bm{y}|\bm{\phi},\bm{\theta}\right] & =\int_{\bm{w}}\exp\left\{ \ell\left(\bm{w},\cdot\right)\right\} d\bm{w}\\
+ & \approx\int_{\bm{w}}\exp\left\{ \ell\left(\hat{\bm{w}}\right)-\frac{1}{2}\left(\bm{w}-\hat{\bm{w}}\right)^{T}\left[-\bm{H}\right]\left(\bm{w}-\hat{\bm{w}}\right)\right\} d\bm{w}\\
+ & =\left(2\pi\right)^{n/2}\left|-\bm{H}\right|^{-1/2}\exp\left\{ \ell\left(\hat{\bm{w}}\right)\right\} \underbrace{\int_{\bm{w}}\left(2\pi\right)^{-n/2}\left[-\bm{H}\right]^{1/2}\exp\left\{ -\frac{1}{2}\left(\bm{w}-\hat{\bm{w}}\right)^{T}\left[-\bm{H}\right]\left(\bm{w}-\hat{\bm{w}}\right)\right\} d\bm{w}}_{1}\\
+ & =\left(2\pi\right)^{n/2}\left|-\bm{H}\right|^{-1/2}\exp\left\{ \ell\left(\hat{\bm{w}}\right)\right\} 
+\end{align*}
+
+And its log
+
+\begin{align*}
+\log\left[\bm{y}|\bm{\phi},\bm{\theta}\right] & =\frac{n}{2}\log\left(2\pi\right)+\ell\left(\hat{\bm{w}}\right)-\frac{1}{2}\log\left|-\bm{H}\right|\\
+ & =\frac{n}{2}\log\left(2\pi\right)+\log\left[\bm{y}|\bm{g}^{-1}\left(\hat{\bm{w}}\right),\bm{\phi}\right]+\log\left[\hat{\bm{w}}|\bm{X},\bm{\Sigma}_{\theta}\right]-\frac{1}{2}\log\left|-\bm{H}\right|
+\end{align*}
+
+where
+
+\begin{align*}
+\log\left[\hat{\bm{w}}|\bm{X},\bm{\Sigma}_{\theta}\right] & =-\frac{n-p}{2}\log\left(2\pi\right)-\frac{1}{2}\left|\bm{\Sigma}_{\theta}\right|-\frac{1}{2}\log\left|\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right|\\
+ & -\frac{1}{2}\underbrace{\hat{\bm{w}}^{T}\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]}_{C_{1}}\hat{\bm{w}}
+\end{align*}
+
+\#\#\#\#\#\#\#\#
+
+Compare to them with replacing $C_{1}$ above to be (with $\hat{\bm{\beta}}=\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\hat{\bm{w}}$)
+
+\begin{align*}
+C_{1} & =\left(\hat{\bm{w}}-\bm{X}\hat{\bm{\beta}}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\hat{\bm{w}}-\bm{X}\hat{\bm{\beta}}\right)\\
+ & =\left(\hat{\bm{w}}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\hat{\bm{w}}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\hat{\bm{w}}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\hat{\bm{w}}\right)\\
+ & =\hat{\bm{w}}^{T}\left\{ \bm{I}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right\} \bm{\Sigma}_{\theta}^{-1}\left\{ \bm{I}-\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right\} \hat{\bm{w}}\\
+ & =\hat{\bm{w}}^{T}\left\{ \bm{\Sigma}_{\theta}^{-1}-2\bm{\Sigma}_{\theta}^{-1}\bm{X}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}+\bm{\Sigma}_{\theta}^{-1}\bm{X}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\bm{\Sigma}_{\theta}^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right\} \hat{\bm{w}}
+\end{align*}
+
+\#\#\#\#\#\#\#\#\#\#\#Don't get it
+
+\#\#\#\#\#\#\#\#\#Try myself
+
+\[
+\ell\left(\hat{\bm{w}}\right)=\log\left\{ \left[\bm{y}|\bm{g}^{-1}\left(\hat{\bm{w}}\right),\bm{\phi}\right]\right\} -\frac{1}{2}\hat{\bm{w}}^{T}\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]\hat{\bm{w}}
+\]
+
+and
+
+\[
+\frac{\partial\ell\left(\bm{w},\cdot\right)}{\partial\bm{w}}=\frac{\partial}{\partial\bm{w}}\log\left\{ \left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\right\} -\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]\bm{w}
+\]
+
+and
+
+\[
+\frac{\partial^{2}\ell\left(\bm{w},\cdot\right)}{\partial\bm{w}\partial\bm{w}^{T}}=\frac{\partial^{2}}{\partial\bm{w}\partial\bm{w}^{T}}\log\left\{ \left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\right\} -\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]
+\]
+
+Hence,
+
+\[
+\left.\frac{\partial^{2}\ell\left(\bm{w},\cdot\right)}{\partial\bm{w}\partial\bm{w}^{T}}\right|_{\bm{w}=\hat{\bm{w}}}=\underbrace{\left.\frac{\partial^{2}\log\left\{ \left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\right\} }{\partial\bm{w}\partial\bm{w}^{T}}\right|_{\bm{w}=\hat{\bm{w}}}}_{\bm{D}_{\phi}}-\underbrace{\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]}_{\bm{P}_{\theta}}
+\]
+
+Hm... I get the same gradient and Hessian as they...
+\end{document}

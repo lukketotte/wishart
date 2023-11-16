@@ -1,0 +1,526 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+They have latent variables 
+\begin_inset Formula $\bm{w}$
+\end_inset
+
+ and
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\bm{w}=\bm{X}\bm{\beta}+\sum_{k=1}^{q}\bm{Z}_{k}\bm{r}_{k}+\bm{\epsilon}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Assuming something about the errors this means
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\sim N\left(\bm{X}\bm{\beta},\bm{\Sigma}_{\theta}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+or equivalently
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f\left(\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right)=\left(2\pi\right)^{-n/2}\left|\bm{\Sigma}_{\theta}\right|^{-1/2}\exp\left\{ -\frac{1}{2}\left(\bm{w}-\bm{X}\bm{\beta}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\bm{w}-\bm{X}\bm{\beta}\right)\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\bm{\Sigma}_{\theta}=\sum_{k=1}^{q}\bm{Z}_{k}\bm{V}_{k}\bm{Z}_{k}^{T}+\sigma_{0}^{2}\bm{I}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The joint density 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left[\bm{y},\bm{w}|\bm{\phi},\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]=\left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\left[\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]$
+\end_inset
+
+ is the data model and 
+\begin_inset Formula $\left[\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]$
+\end_inset
+
+ is the process model.
+ We have
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left[\bm{y}|\bm{\phi},\bm{\theta}\right] & =\int_{\bm{w}}\int_{\bm{\beta}}\left[\bm{y},\bm{w}|\bm{\phi},\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]d\bm{\beta}d\bm{w}\\
+ & =\int_{\bm{w}}\left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\left\{ \int_{\bm{\beta}}\left[\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]d\bm{\beta}\right\} d\bm{w}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We have
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\int_{\bm{\beta}}\left[\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]d\bm{\beta} & =\int_{\bm{\beta}}\left(2\pi\right)^{-n/2}\left|\bm{\Sigma}_{\theta}\right|^{-1/2}\exp\left\{ -\frac{1}{2}\underbrace{\left(\bm{w}-\bm{X}\bm{\beta}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\bm{w}-\bm{X}\bm{\beta}\right)}_{A_{1}}\right\} d\bm{\beta}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+A_{1} & =\left(\bm{w}-\bm{X}\bm{\beta}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\bm{w}-\bm{X}\bm{\beta}\right)\\
+ & =\bm{w}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}+\bm{\beta}^{T}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\bm{\beta}-2\bm{\beta}^{T}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\\
+ & =\left(\bm{\beta}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)^{T}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\left(\bm{\beta}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)\\
+ & -\bm{w}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}+\bm{w}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left[\bm{w}|\bm{X},\bm{\Sigma}_{\theta}\right] & =\int_{\bm{\beta}}\left[\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]d\bm{\beta}\\
+ & =\left(2\pi\right)^{-n/2}\left|\bm{\Sigma}_{\theta}\right|^{-1/2}\\
+ & \int_{\bm{\beta}}\exp\left\{ -\frac{1}{2}\left(\bm{\beta}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)^{T}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\left(\bm{\beta}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)\right\} d\bm{\beta}\\
+ & \times\exp\left\{ -\frac{1}{2}\bm{w}^{T}\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]\bm{w}\right\} \\
+ & =\left(2\pi\right)^{-\left(n-p\right)/2}\left|\bm{\Sigma}_{\theta}\right|^{-1/2}\left|\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right|^{-1/2}\\
+ & \underbrace{\int_{\bm{\beta}}\left(2\pi\right)^{-p/2}\left|\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right|^{1/2}\exp\left\{ -\frac{1}{2}\left(\bm{\beta}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)^{T}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]\left(\bm{\beta}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)\right\} d\bm{\beta}}_{=1}\\
+ & \times\exp\left\{ -\frac{1}{2}\bm{w}^{T}\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]\bm{w}\right\} \\
+ & =\left(2\pi\right)^{-\left(n-p\right)/2}\left|\bm{\Sigma}_{\theta}\right|^{-1/2}\left|\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right|^{-1/2}\\
+ & \times\exp\left\{ -\frac{1}{2}\bm{w}^{T}\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]\bm{w}\right\} 
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then the marginal
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left[\bm{y}|\bm{\phi},\bm{\theta}\right] & =\int_{\bm{w}}\left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\left[\bm{w}|\bm{X},\bm{\Sigma}_{\theta}\right]d\bm{w}\\
+ & \int_{\bm{w}}\left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\left\{ \int_{\bm{\beta}}\left[\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]d\bm{\beta}\right\} d\bm{w}\\
+ & =\left(2\pi\right)^{-\left(n-p\right)/2}\left|\bm{\Sigma}_{\theta}\right|^{-1/2}\left|\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right|^{-1/2}\\
+ & \int_{\bm{w}}\left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\exp\left\{ -\frac{1}{2}\bm{w}^{T}\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]\bm{w}\right\} d\bm{w}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+################Try what they say, i.e., replaying 
+\begin_inset Formula $\bm{\beta}$
+\end_inset
+
+ in 
+\begin_inset Formula $\left[\bm{w}|\bm{X},\bm{\beta},\bm{\Sigma}_{\theta}\right]$
+\end_inset
+
+ by the maximum likelihood estimator 
+\begin_inset Formula $\hat{\bm{\beta}}=\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}$
+\end_inset
+
+.
+ Then
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left[\bm{w}|\bm{X},\bm{\Sigma}_{\theta}\right] & =\frac{1}{C_{n}}\exp\left\{ \left(\bm{w}-\bm{X}\hat{\bm{\beta}}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\bm{w}-\bm{X}\hat{\bm{\beta}}\right)\right\} \\
+ & =\frac{1}{C_{n}}\exp\left\{ \underbrace{\left(\bm{w}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\bm{w}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)}_{B_{1}}\right\} 
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+B_{1} & =\left(\bm{I}\bm{w}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\bm{I}\bm{w}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)\\
+ & =\left(\left\{ \bm{I}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\right\} \bm{w}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\left\{ \bm{I}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\right\} \bm{w}\right)\\
+ & =\bm{w}^{T}\left\{ \bm{I}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\right\} \bm{\Sigma}_{\theta}^{-1}\left\{ \bm{I}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\right\} \bm{w}\\
+ & =\bm{w}^{T}\left\{ \bm{\Sigma}_{\theta}^{-1}+\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{\Sigma}_{\theta}^{-1}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}-2\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\right\} \bm{w}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+B_{1} & =\left(\bm{I}\bm{w}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\bm{I}\bm{w}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{w}\right)\\
+ & =\bm{w}^{T}\left\{ \bm{I}-\left(\bm{\Sigma}_{\theta}^{-1}\bm{X}\right)\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\right\} \bm{\Sigma}_{\theta}^{-1}\left\{ \bm{I}-\left(\bm{\Sigma}_{\theta}^{-1}\bm{X}\right)\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\right\} \bm{w}\\
+ & =\bm{w}^{T}\left\{ \bm{\Sigma}_{\theta}^{-1}+\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{\Sigma}_{\theta}^{-1}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}-2\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{\Sigma}_{\theta}^{-1}\right\} \bm{w}\\
+ & =\bm{w}^{T}\left\{ \bm{\Sigma}_{\theta}^{-1}+\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\left(\bm{\Sigma}_{\theta}^{-1}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}-2\bm{\Sigma}_{\theta}^{-1}\right)\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right\} \bm{w}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Same as Lukas.
+\end_layout
+
+\begin_layout Standard
+#################################################
+\end_layout
+
+\begin_layout Standard
+Let 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\ell\left(\bm{w},\cdot\right) & =\log\left\{ \left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\left[\bm{w}|\bm{X},\bm{\Sigma}_{\theta}\right]\right\} \\
+ & =\log\left\{ \left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\right\} -\frac{1}{2}\bm{w}^{T}\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]\bm{w}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+And (again)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left[\bm{y}|\bm{\phi},\bm{\theta}\right]=\int_{\bm{w}}\exp\left\{ \ell\left(\bm{w},\cdot\right)\right\} d\bm{w}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using 
+\begin_inset Formula $\hat{\bm{w}}=\underset{\bm{w}}{\arg\max}\ell\left(\bm{w},\cdot\right)$
+\end_inset
+
+ and approximate
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\ell\left(\bm{w},\cdot\right) & \approx\ell\left(\hat{\bm{w}}\right)+\frac{1}{2}\left(\bm{w}-\hat{\bm{w}}\right)^{T}\underbrace{\left.\frac{\partial^{2}\ell\left(\bm{w},\cdot\right)}{\partial\bm{w}\partial\bm{w}^{T}}\right|_{\bm{w}=\hat{\bm{w}}}}_{\bm{H}}\left(\bm{w}-\hat{\bm{w}}\right)\\
+ & =\ell\left(\hat{\bm{w}}\right)-\frac{1}{2}\left(\bm{w}-\hat{\bm{w}}\right)^{T}\left[-\bm{H}\right]\left(\bm{w}-\hat{\bm{w}}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left[\bm{y}|\bm{\phi},\bm{\theta}\right] & =\int_{\bm{w}}\exp\left\{ \ell\left(\bm{w},\cdot\right)\right\} d\bm{w}\\
+ & \approx\int_{\bm{w}}\exp\left\{ \ell\left(\hat{\bm{w}}\right)-\frac{1}{2}\left(\bm{w}-\hat{\bm{w}}\right)^{T}\left[-\bm{H}\right]\left(\bm{w}-\hat{\bm{w}}\right)\right\} d\bm{w}\\
+ & =\left(2\pi\right)^{n/2}\left|-\bm{H}\right|^{-1/2}\exp\left\{ \ell\left(\hat{\bm{w}}\right)\right\} \underbrace{\int_{\bm{w}}\left(2\pi\right)^{-n/2}\left[-\bm{H}\right]^{1/2}\exp\left\{ -\frac{1}{2}\left(\bm{w}-\hat{\bm{w}}\right)^{T}\left[-\bm{H}\right]\left(\bm{w}-\hat{\bm{w}}\right)\right\} d\bm{w}}_{1}\\
+ & =\left(2\pi\right)^{n/2}\left|-\bm{H}\right|^{-1/2}\exp\left\{ \ell\left(\hat{\bm{w}}\right)\right\} 
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+And its log
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\log\left[\bm{y}|\bm{\phi},\bm{\theta}\right] & =\frac{n}{2}\log\left(2\pi\right)+\ell\left(\hat{\bm{w}}\right)-\frac{1}{2}\log\left|-\bm{H}\right|\\
+ & =\frac{n}{2}\log\left(2\pi\right)+\log\left[\bm{y}|\bm{g}^{-1}\left(\hat{\bm{w}}\right),\bm{\phi}\right]+\log\left[\hat{\bm{w}}|\bm{X},\bm{\Sigma}_{\theta}\right]-\frac{1}{2}\log\left|-\bm{H}\right|
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\log\left[\hat{\bm{w}}|\bm{X},\bm{\Sigma}_{\theta}\right] & =-\frac{n-p}{2}\log\left(2\pi\right)-\frac{1}{2}\left|\bm{\Sigma}_{\theta}\right|-\frac{1}{2}\log\left|\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right|\\
+ & -\frac{1}{2}\underbrace{\hat{\bm{w}}^{T}\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]}_{C_{1}}\hat{\bm{w}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+########
+\end_layout
+
+\begin_layout Standard
+Compare to them with replacing 
+\begin_inset Formula $C_{1}$
+\end_inset
+
+ above to be (with 
+\begin_inset Formula $\hat{\bm{\beta}}=\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\hat{\bm{w}}$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+C_{1} & =\left(\hat{\bm{w}}-\bm{X}\hat{\bm{\beta}}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\hat{\bm{w}}-\bm{X}\hat{\bm{\beta}}\right)\\
+ & =\left(\hat{\bm{w}}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\hat{\bm{w}}\right)^{T}\bm{\Sigma}_{\theta}^{-1}\left(\hat{\bm{w}}-\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\hat{\bm{w}}\right)\\
+ & =\hat{\bm{w}}^{T}\left\{ \bm{I}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right\} \bm{\Sigma}_{\theta}^{-1}\left\{ \bm{I}-\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right\} \hat{\bm{w}}\\
+ & =\hat{\bm{w}}^{T}\left\{ \bm{\Sigma}_{\theta}^{-1}-2\bm{\Sigma}_{\theta}^{-1}\bm{X}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}+\bm{\Sigma}_{\theta}^{-1}\bm{X}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\bm{\Sigma}_{\theta}^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right\} \hat{\bm{w}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+###########Don't get it
+\end_layout
+
+\begin_layout Standard
+#########Try myself
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\ell\left(\hat{\bm{w}}\right)=\log\left\{ \left[\bm{y}|\bm{g}^{-1}\left(\hat{\bm{w}}\right),\bm{\phi}\right]\right\} -\frac{1}{2}\hat{\bm{w}}^{T}\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]\hat{\bm{w}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial\ell\left(\bm{w},\cdot\right)}{\partial\bm{w}}=\frac{\partial}{\partial\bm{w}}\log\left\{ \left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\right\} -\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]\bm{w}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial^{2}\ell\left(\bm{w},\cdot\right)}{\partial\bm{w}\partial\bm{w}^{T}}=\frac{\partial^{2}}{\partial\bm{w}\partial\bm{w}^{T}}\log\left\{ \left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\right\} -\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Hence,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left.\frac{\partial^{2}\ell\left(\bm{w},\cdot\right)}{\partial\bm{w}\partial\bm{w}^{T}}\right|_{\bm{w}=\hat{\bm{w}}}=\underbrace{\left.\frac{\partial^{2}\log\left\{ \left[\bm{y}|\bm{g}^{-1}\left(\bm{w}\right),\bm{\phi}\right]\right\} }{\partial\bm{w}\partial\bm{w}^{T}}\right|_{\bm{w}=\hat{\bm{w}}}}_{\bm{D}_{\phi}}-\underbrace{\left[\bm{\Sigma}_{\theta}^{-1}-\bm{\Sigma}_{\theta}^{-1}\bm{X}\left[\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\bm{X}\right]^{-1}\bm{X}^{T}\bm{\Sigma}_{\theta}^{-1}\right]}_{\bm{P}_{\theta}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Hm...
+ I get the same gradient and Hessian as they...
+\end_layout
+
+\end_body
+\end_document
