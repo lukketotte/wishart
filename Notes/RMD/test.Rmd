@@ -26,7 +26,7 @@ Now, consider the transformation $\theta = \log \tau$, then the posterior, in te
 $$
 \pi(\theta|\mathbf{X}) \propto \prod_{i=1}^n p(x_i|e^{\theta}) \pi(e^\theta)e^\theta = \Gamma \left(e^\theta;\ \frac{n+\nu}{2},\ \frac{1}{2}\Big[\sum_ix_i^2 + 1\Big] \right) e^\theta = e^{\theta\alpha_n}\exp\left\{-e^\theta\beta_n\right\},
 $$
-where $\alpha_n = (n+\nu)/2$ and $\beta_n = \sum_ix_i^2+1$. Then
+where $\alpha_n = (n+\nu)/2$ and $2\beta_n = \sum_ix_i^2+1$. Then
 $$
 \frac{\partial}{\partial\theta} \log \pi(\theta|\mathbf{x}) = \alpha_n - \beta_ne^{\theta},\quad \frac{\partial^2}{\partial\theta^2}\log \pi(\theta|\mathbf{x}) = -\beta_ne^\theta.
 $$
@@ -74,3 +74,18 @@ ggplot() +
                           1/sqrt(alpha_n))), color = "red") +
   ylab("") + theme_bw()
 ```
+
+## Precision
+Consider now the $\chi^2$ approximation to the posterior of the precision rather than the log transformed case.
+
+$$
+\frac{\partial}{\partial\tau} \log \pi(\tau|\mathbf{x}) = \frac{\alpha_n-1}{\tau}-\beta_n,\quad \frac{\partial^2}{\partial\tau^2}\log \pi(\tau|\mathbf{x}) = -\frac{\alpha_n - 1}{\tau^2}.
+$$
+The posterior mode is $\hat{\tau} = \frac{\alpha_n-1}{\beta_n}$ so
+$$
+-H(\hat{\tau}) = \frac{\beta_n^2}{\alpha_n-1}.
+$$
+Thus a $\chi^2$ approximation to the posterior of $\tau$ is based on $\mathcal{N}\big(\tau; \hat{\tau}, (\alpha_n - 1)/\beta_n^2\big)$ using that, for $X \sim \mathcal{N}(\mu, \sigma)$ we have that $(X/\sigma)^2 \sim \chi_1(\mu^2/\sigma^2)$. So the Laplace approximation to $\tau$ is given by
+$$
+\chi^2_1\left(\hat{\tau}^2 / H(\hat{\tau})\right), \quad \hat{\tau}^2 / H(\hat{\tau}) = \alpha_n - 1 = n + \nu -1
+$$
