@@ -1,3 +1,2 @@
 # wishart
-Laplace approximation using wishart
-Hellooooo
+Laplace approximation using wishart rather than normal.
